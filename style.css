@@ -40,11 +40,17 @@ body {
 }
 
 #cronometro {
-    font-size: clamp(70px, 17vw, 230px);
+    font-size: clamp(60px, 16vw, 270px);
 
     font-weight: bold;
 
     color: #111;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     margin: 0 auto;
     margin-bottom: clamp(15px, 3vw, 30px);
@@ -55,18 +61,11 @@ body {
 
     transition: .3s;
 
-    word-break: keep-all;
     white-space: nowrap;
 }
 
 #cronometro.alerta {
     color: #e60000;
-}
-
-.rodada-info {
-    font-size: clamp(16px, 2.5vw, 22px);
-    font-weight: bold;
-    color: #333;
 }
 
 .botoes-principais {
@@ -309,15 +308,11 @@ body {
 /* Telas grandes (TV / monitores grandes) */
 @media (min-width: 1600px) {
     #cronometro {
-        font-size: 220px;
+        font-size: clamp(270px, 15vw, 340px);
     }
 
     .logo {
         width: 480px;
-    }
-
-    .rodada-info {
-        font-size: 28px;
     }
 }
 
@@ -331,9 +326,5 @@ body {
     #cronometro {
         font-size: clamp(40px, 10vw, 90px);
         margin-bottom: 8px;
-    }
-
-    .rodada-info {
-        font-size: 14px;
     }
 }

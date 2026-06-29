@@ -14,8 +14,6 @@ let ultimoSegundoApitado = null;
 
 // ===== ELEMENTOS =====
 const elCronometro = document.getElementById("cronometro");
-const elRodadaAtual = document.getElementById("rodadaAtual");
-const elRodadaTotal = document.getElementById("rodadaTotal");
 
 const selectTempoLuta = document.getElementById("tempoLuta");
 const inputTempoLutaCustom = document.getElementById("tempoLutaCustom");
@@ -206,9 +204,6 @@ function atualizarTela() {
     }
 
     elCronometro.classList.add(classeCor);
-
-    elRodadaAtual.textContent = rodadaAtual;
-    elRodadaTotal.textContent = rodadaTotal;
 }
 
 // toca um bipe simples a cada segundo nos últimos 5 segundos da fase (5,4,3,2,1)
