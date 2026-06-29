@@ -35,7 +35,7 @@ body {
 }
 
 .logo {
-    width: min(360px, 65vw);
+    width: min(480px, 75vw);
     margin-bottom: clamp(20px, 4vw, 40px);
 }
 
@@ -312,14 +312,14 @@ body {
     }
 
     .logo {
-        width: 480px;
+        width: 620px;
     }
 }
 
 /* Orientação paisagem em telas baixas (ex: celular na horizontal) */
 @media (max-height: 500px) and (orientation: landscape) {
     .logo {
-        width: min(160px, 30vw);
+        width: min(200px, 32vw);
         margin-bottom: 10px;
     }
 
