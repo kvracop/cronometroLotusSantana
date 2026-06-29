@@ -1,69 +1,339 @@
-body{
-
-    margin:0;
-    padding:0;
-
-    background:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    height:100vh;
-
-    font-family:Arial, Helvetica, sans-serif;
-
+* {
+    box-sizing: border-box;
 }
 
-.container{
+html, body {
+    margin: 0;
+    padding: 0;
 
-    text-align:center;
+    background: white;
 
+    width: 100%;
+    height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow-x: hidden;
 }
 
-.logo{
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    width:250px;
-    margin-bottom:50px;
+    min-height: 100vh;
 
+    padding: 20px;
 }
 
-#cronometro{
+/* ===== TELA PRINCIPAL ===== */
 
-    font-size:90px;
-
-    font-weight:bold;
-
-    color:#111;
-
-    margin-bottom:40px;
-
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
 }
 
-button{
-
-    padding:15px 35px;
-
-    font-size:20px;
-
-    margin:8px;
-
-    cursor:pointer;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#0d6efd;
-
-    color:white;
-
-    transition:.3s;
-
+.logo {
+    width: min(360px, 65vw);
+    margin-bottom: clamp(20px, 4vw, 40px);
 }
 
-button:hover{
+#cronometro {
+    font-size: clamp(70px, 17vw, 230px);
 
-    background:#0b5ed7;
+    font-weight: bold;
 
+    color: #111;
+
+    margin: 0 auto;
+    margin-bottom: clamp(15px, 3vw, 30px);
+
+    letter-spacing: clamp(1px, 0.3vw, 4px);
+
+    line-height: 1;
+
+    transition: .3s;
+
+    word-break: keep-all;
+    white-space: nowrap;
+}
+
+#cronometro.alerta {
+    color: #e60000;
+}
+
+.rodada-info {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: bold;
+    color: #333;
+}
+
+.botoes-principais {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(16px, 3vw, 28px);
+
+    margin-top: clamp(16px, 3vw, 28px);
+}
+
+/* ===== BOTÕES DE ÍCONE (circulares, contorno preto) ===== */
+
+.btn-icone {
+    width: clamp(56px, 8vw, 76px);
+    height: clamp(56px, 8vw, 76px);
+
+    border-radius: 50%;
+    border: 2.5px solid #111;
+    background: #111;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-icone svg {
+    width: 42%;
+    height: 42%;
+}
+
+.btn-icone:hover {
+    background: white;
+    color: #111;
+}
+
+/* ===== BOTÃO FLUTUANTE (ABRE O MENU) ===== */
+
+.menu-flutuante {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #111;
+    color: white;
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+
+    z-index: 1000;
+
+    transition: background .2s, transform .2s;
+}
+
+.menu-flutuante:hover {
+    background: #000;
+    transform: scale(1.05);
+}
+
+/* ===== OVERLAY (FUNDO ESCURO POR TRÁS DO PAINEL) ===== */
+
+.overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.4);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity .25s;
+
+    z-index: 998;
+}
+
+.overlay-menu.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== PAINEL LATERAL ===== */
+
+.painel-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: min(360px, 85vw);
+    height: 100%;
+
+    background: #ffffff;
+    box-shadow: 4px 0 16px rgba(0,0,0,0.2);
+
+    padding: 24px;
+
+    overflow-y: auto;
+
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+
+    z-index: 999;
+
+    text-align: left;
+}
+
+.painel-menu.aberto {
+    transform: translateX(0);
+}
+
+.painel-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
+.painel-cabecalho h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #222;
+}
+
+.botao-fechar {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+    padding: 4px 8px;
+}
+
+.botao-fechar:hover {
+    color: #000;
+}
+
+.painel-secao {
+    margin-bottom: 20px;
+}
+
+.painel-secao label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.painel-secao select,
+.painel-secao input {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* ===== BOTÃO "ALTERAR" (avisa que há mudanças não aplicadas) ===== */
+
+.btn-alterar {
+    display: none;
+
+    width: 100%;
+
+    padding: 14px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #ff9800;
+    color: white;
+
+    cursor: pointer;
+
+    margin-top: 6px;
+
+    transition: background .2s, transform .2s;
+}
+
+.btn-alterar.visivel {
+    display: block;
+    animation: aparecer .25s ease;
+}
+
+.btn-alterar:hover {
+    background: #e68a00;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Telas muito pequenas (celulares estreitos) */
+@media (max-width: 400px) {
+    .menu-flutuante {
+        top: 16px;
+        left: 16px;
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+
+    .painel-menu {
+        padding: 16px;
+    }
+}
+
+/* Telas grandes (TV / monitores grandes) */
+@media (min-width: 1600px) {
+    #cronometro {
+        font-size: 220px;
+    }
+
+    .logo {
+        width: 480px;
+    }
+
+    .rodada-info {
+        font-size: 28px;
+    }
+}
+
+/* Orientação paisagem em telas baixas (ex: celular na horizontal) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .logo {
+        width: min(160px, 30vw);
+        margin-bottom: 10px;
+    }
+
+    #cronometro {
+        font-size: clamp(40px, 10vw, 90px);
+        margin-bottom: 8px;
+    }
+
+    .rodada-info {
+        font-size: 14px;
+    }
 }
